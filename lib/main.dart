@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart'; // Import your login page file
+import 'pages/first_page.dart';
+// Import your login page file
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue, // Optional: Define your theme
       ),
-      home: LoginPage(), // Set LoginPage as the home widget
+      home: WelcomeScreen(), // Set LoginPage as the home widget
     );
   }
 }

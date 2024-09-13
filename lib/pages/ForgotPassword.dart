@@ -14,7 +14,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ForgotPasswordPage extends StatelessWidget {
+class ForgotPasswordPage extends StatefulWidget {
+  @override
+  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+}
+
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  bool _isObscure1 = true;
+  bool _isObscure2 = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,28 +49,52 @@ class ForgotPasswordPage extends StatelessWidget {
               style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
             SizedBox(height: 32),
+
+            // Enter new password
             TextField(
-              obscureText: true,
+              obscureText: _isObscure1,
               decoration: InputDecoration(
                 labelText: 'Enter new password',
-                suffixIcon: Icon(Icons.visibility_off),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isObscure1 ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscure1 = !_isObscure1;
+                    });
+                  },
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
             SizedBox(height: 16),
+
+            // Re-enter new password
             TextField(
-              obscureText: true,
+              obscureText: _isObscure2,
               decoration: InputDecoration(
                 labelText: 'Re-enter new password',
-                suffixIcon: Icon(Icons.visibility),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isObscure2 ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscure2 = !_isObscure2;
+                    });
+                  },
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
             ),
             SizedBox(height: 32),
+
+            // Reset Password Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
