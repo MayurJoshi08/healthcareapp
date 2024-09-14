@@ -25,10 +25,10 @@ class WelcomeScreen extends StatelessWidget {
           children: <Widget>[
             Spacer(),
             // Placeholder for the illustration
-            // Container(
-            //   height: 200,
-            //   child: Image.asset('assets/welcome_illustration.png'), // Add your asset image here
-            // ),
+            Container(
+              height: 200,
+              child: Image.asset('assets/images/google.png'), // Add your asset image here
+            ),
             Spacer(),
             Text(
               'Welcome to the app',
