@@ -15,7 +15,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class CreateAccountScreen extends StatelessWidget {
+// Convert CreateAccountScreen to StatefulWidget
+class CreateAccountScreen extends StatefulWidget {
+  @override
+  _CreateAccountScreenState createState() => _CreateAccountScreenState();
+}
+
+class _CreateAccountScreenState extends State<CreateAccountScreen> {
+  bool _isObscure = true; // Manage password visibility state
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,12 +67,19 @@ class CreateAccountScreen extends StatelessWidget {
             ),
             SizedBox(height: 16),
             TextField(
-              obscureText: true,
+              obscureText: _isObscure, // Control password visibility
               decoration: InputDecoration(
                 labelText: 'Password',
-                suffixIcon: Icon(Icons.visibility),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+                border: OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isObscure ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isObscure = !_isObscure; // Toggle password visibility
+                    });
+                  },
                 ),
               ),
             ),
@@ -83,7 +98,10 @@ class CreateAccountScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Perform sign-up action here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

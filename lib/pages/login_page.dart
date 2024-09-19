@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Register_page.dart';
+import 'package:project/pages/UserSelectionPage.dart';
 import 'ForgotPassword.dart'; // Correct import
 
 void main() {
@@ -172,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => CreateAccountScreen()),
+                        MaterialPageRoute(builder: (context) => UserSelectionPage()),
                       );
                     },
                     child: Text('Create an account'),

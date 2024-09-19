@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/pages/UserSelectionPage.dart';
 import 'login_page.dart';
 
 void main() {
@@ -82,7 +83,10 @@ class WelcomeScreen extends StatelessWidget {
             // Create Account Button
             TextButton(
               onPressed: () {
-                // Navigate to create account screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserSelectionPage()),
+                );
               },
               child: Text(
                 'Create an account',
