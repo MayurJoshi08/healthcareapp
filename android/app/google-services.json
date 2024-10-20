@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "521995852178",
+    "project_id": "cdafsd-ef247",
+    "storage_bucket": "cdafsd-ef247.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521995852178:android:62a575003a168d0a79c94b",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEsNWkEHSEk0x0JSJMgZ5mY-J3HqN_x00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

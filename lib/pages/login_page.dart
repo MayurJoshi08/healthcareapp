@@ -1,9 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:project/pages/UserSelectionPage.dart';
+import '../firebase_options.dart';
 import 'ForgotPassword.dart';
+import 'Register_page.dart';
 import 'Homepage.dart'; // Correct import
 
-void main() {
+Future<void> main() async {
+WidgetsFlutterBinding.ensureInitialized();
+var firebaseApp = await Firebase.initializeApp(
+options: DefaultFirebaseOptions.currentPlatform,
   runApp(MyApp());
 }
 
@@ -25,6 +30,46 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
   bool _keepMeSignedIn = false;
+
+  Future<void> _login() async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Homepage()), // Navigate to Homepage on successful login
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        _showErrorDialog('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        _showErrorDialog('Wrong password provided for that user.');
+      } else {
+        _showErrorDialog(e.message ?? 'An unknown error occurred.');
+      }
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Login Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => UserSelectionPage()),
+                        MaterialPageRoute(builder: (context) => CreateAccountScreen()),
                       );
                     },
                     child: Text('Create an account'),
