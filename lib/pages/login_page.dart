@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../firebase_options.dart';
@@ -6,11 +7,13 @@ import 'Register_page.dart';
 import 'Homepage.dart'; // Correct import
 
 Future<void> main() async {
-WidgetsFlutterBinding.ensureInitialized();
-var firebaseApp = await Firebase.initializeApp(
-options: DefaultFirebaseOptions.currentPlatform,
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp()); // Moved outside the initialization
 }
+
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,6 +33,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
   bool _keepMeSignedIn = false;
+  final FirebaseAuth _auth = FirebaseAuth.instance; // Initialize FirebaseAuth
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
 
   Future<void> _login() async {
     try {
