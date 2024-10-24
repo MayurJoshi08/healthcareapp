@@ -65,7 +65,7 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               radius: 22,
-              backgroundImage: NetworkImage('https://via.placeholder.com/150'), // Placeholder profile image
+              foregroundImage: AssetImage("assets/image.png"),
             ),
           ),
         ],
@@ -169,7 +169,7 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
             children: [
               CircleAvatar(
                 radius: 24,
-                backgroundImage: NetworkImage('https://via.placeholder.com/150'), // Placeholder patient image
+                foregroundImage: AssetImage("assets/image.png"), // Placeholder patient image
               ),
               SizedBox(width: 10),
               Column(
@@ -211,7 +211,7 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
             children: [
               CircleAvatar(
                 radius: 24,
-                backgroundImage: NetworkImage('https://via.placeholder.com/150'), // Placeholder patient image
+                foregroundImage: AssetImage("assets/image.png"), // Placeholder patient image
               ),
               SizedBox(width: 10),
               Column(

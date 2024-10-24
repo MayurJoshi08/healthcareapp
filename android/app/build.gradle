@@ -17,6 +17,7 @@ if (localPropertiesFile.exists()) {
     }
 }
 
+
 // Example usage: Access a property
 def sdkDir = localProperties.getProperty("sdk.dir")
 println "SDK directory is: $sdkDir"

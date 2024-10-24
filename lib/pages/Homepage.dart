@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:project/pages/login_page.dart';
+import 'Profilepage.dart';
+import 'Schedulepage1.dart';
+import 'chatpage.dart';
+
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -8,10 +15,6 @@ class MyApp extends StatelessWidget {
       home: Homepage(),
     );
   }
-}
-
-void main() {
-  runApp(MyApp());
 }
 
 class Homepage extends StatefulWidget {
@@ -84,12 +87,7 @@ class HomePage extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.24,
           width: double.infinity,
           decoration: const BoxDecoration(
-            color: Color.fromRGBO(
-              0,
-              98,
-              255,
-              0.1,
-            ),
+            color: Color.fromRGBO(0, 98, 255, 0.1),
           ),
           child: Padding(
             padding: const EdgeInsets.only(right: 16, left: 16, top: 30),
@@ -103,13 +101,11 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
-                          foregroundImage: AssetImage("assets/Oval.png"),
+                          foregroundImage: AssetImage("assets/Patient pic.png"),
                           backgroundColor: Colors.red,
                           radius: 40,
                         ),
-                        SizedBox(
-                          width: 20,
-                        ),
+                        SizedBox(width: 20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -138,7 +134,7 @@ class HomePage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.06,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("assets/Off.png"),
+                          image: AssetImage("assets/image 1.png"),
                         ),
                       ),
                     ),
@@ -188,9 +184,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
@@ -202,14 +196,36 @@ class HomePage extends StatelessWidget {
                       date: "Sunday, 27 June 2021",
                       time: "08:00am - 10:00am",
                       color: const Color.fromRGBO(1, 81, 255, 0.8),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookingPage(
+                              doctorName: "Dr. Pat Gulipat",
+                              specialty: "Dentist",
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     const SizedBox(width: 30),
                     ScheduleCard(
-                      title: "Dr. Pat Gulipat",
-                      subtitle: "Dentist",
-                      date: "Sunday, 27 June 2021",
-                      time: "08:00am - 10:00am",
+                      title: "Dr. John Doe",
+                      subtitle: "Cardiologist",
+                      date: "Monday, 28 June 2021",
+                      time: "09:00am - 11:00am",
                       color: Colors.black,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BookingPage(
+                              doctorName: "Dr. John Doe",
+                              specialty: "Cardiologist",
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -255,6 +271,7 @@ class ScheduleCard extends StatelessWidget {
   final String date;
   final String time;
   final Color color;
+  final VoidCallback onTap; // Added onTap callback
 
   const ScheduleCard({
     required this.title,
@@ -262,125 +279,108 @@ class ScheduleCard extends StatelessWidget {
     required this.date,
     required this.time,
     required this.color,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      height: MediaQuery.of(context).size.height * 0.23,
-      width: MediaQuery.of(context).size.width * 0.8,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        color: color,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    foregroundImage: AssetImage("assets/image.png"),
-                    backgroundColor: Colors.red,
-                    radius: 30,
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Dr. Pat Gulipat",
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "Dentist",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Icon(
-                Icons.more_horiz,
-                color: Colors.white,
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Sunday, 27 June 2021",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "08:00am - 10:00am",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+    return GestureDetector(
+      onTap: onTap, // Trigger the onTap when the card is tapped
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        height: MediaQuery.of(context).size.height * 0.23,
+        width: MediaQuery.of(context).size.width * 0.8,
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          color: color,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      foregroundImage: AssetImage("assets/image.png"),
+                      backgroundColor: Colors.red,
+                      radius: 30,
                     ),
-                  ),
-                ],
-              ),
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                radius: 25,
-                child: Icon(
-                  Icons.videocam,
-                  color: color,
+                    SizedBox(width: 15),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Dr. Pat Gulipat",
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "Dentist",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        ],
+                Icon(Icons.more_vert, color: Colors.white)
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.calendar_today, color: Colors.white),
+                    SizedBox(width: 10),
+                    Text(
+                      "Sunday, 27 June 2021",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.access_time_filled, color: Colors.white),
+                    SizedBox(width: 10),
+                    Text(
+                      "08:00am - 10:00am",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
-class SchedulePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Schedule Page'),
-    );
-  }
-}
+class BookingPage extends StatelessWidget {
+  final String doctorName;
+  final String specialty;
 
-class ChatPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Chat Page'),
-    );
-  }
-}
+  BookingPage({required this.doctorName, required this.specialty});
 
-class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Profile Page'),
+    return Scaffold(
+      appBar: AppBar(title: Text("Book Appointment")),
+      body: Center(
+        child: Text("Booking appointment with $doctorName ($specialty)"),
+      ),
     );
   }
 }

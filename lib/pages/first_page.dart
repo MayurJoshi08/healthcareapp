@@ -28,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
             // Placeholder for the illustration
             Container(
               height: 200,
-              child: Image.asset('assets/images/google.png'), // Add your asset image here
+              child: Image.asset('assets/images/Frame.png'), // Add your asset image here
             ),
             Spacer(),
             Text(
