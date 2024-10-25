@@ -23,7 +23,7 @@ def flutterVersionName = localProperties.getProperty("flutter.versionName", "1.0
 
 android {
     namespace = "com.example.project"
-    compileSdkVersion = flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion = flutter.ndkVersion  // Ensure this is defined in local.properties or Flutter settings
 
     compileOptions {
@@ -34,7 +34,7 @@ android {
     defaultConfig {
         applicationId = "com.example.project"  // Ensure this is a unique application ID
         minSdkVersion 23
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()  // Ensure versionCode is an integer
         versionName flutterVersionName  // String is fine here
     }

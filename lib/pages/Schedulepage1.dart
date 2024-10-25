@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-
 void main() => runApp(MyApp());
 
-class BookingAppointmentApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +14,7 @@ class BookingAppointmentApp extends StatelessWidget {
 
 class SchedulePage extends StatefulWidget {
   @override
-  _SchedulePageState createState() => _SchedulePageState(); // Corrected state class name
+  _SchedulePageState createState() => _SchedulePageState();
 }
 
 class _SchedulePageState extends State<SchedulePage> {
@@ -27,13 +25,14 @@ class _SchedulePageState extends State<SchedulePage> {
   final List<String> days = ['M', 'T', 'W', 'T', 'F', 'S'];
   final List<int> dates = [7, 8, 9, 10, 11, 12, 13];
   final List<String> morningTimes = ['08:00 AM', '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM'];
-  final List<String> nightTimes = ['08:00 PM', '09:00 PM', '09:30 PM', '10:00 PM', '10:30 PM']; // Corrected night times
+  final List<String> nightTimes = ['08:00 PM', '09:00 PM', '09:30 PM', '10:00 PM', '10:30 PM'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Booking Appointment'),
+        automaticallyImplyLeading: false, // Removes the back arrow
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -114,9 +113,68 @@ class _SchedulePageState extends State<SchedulePage> {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                // Continue to next step, add the necessary action here
+                // Navigate to Medical History Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MedicalHistoryPage()),
+                );
               },
               child: Text('Continue'),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(double.infinity, 48),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MedicalHistoryPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Medical History'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Medical History', style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Enter your medical history',
+                filled: true,
+                fillColor: Colors.grey[200],
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              ),
+              maxLines: 5,
+            ),
+            SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: () {
+                // Add upload functionality
+              },
+              icon: Icon(Icons.upload_file, color: Colors.blue),
+              label: Text('Upload Prescription', style: TextStyle(color: Colors.blue)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                side: BorderSide(color: Colors.blue),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
+            Spacer(),
+            ElevatedButton(
+              onPressed: () {
+                // Continue to next step, add necessary action here
+              },
+              child: Text('Next'),
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(double.infinity, 48),
               ),

@@ -3,7 +3,6 @@ import 'Profilepage.dart';
 import 'Schedulepage1.dart';
 import 'chatpage.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -134,7 +133,7 @@ class HomePage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * 0.06,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("assets/image 1.png"),
+                          image: AssetImage("assets/image1.png"),
                         ),
                       ),
                     ),
@@ -297,7 +296,7 @@ class ScheduleCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -305,25 +304,25 @@ class ScheduleCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CircleAvatar(
-                      foregroundImage: AssetImage("assets/image.png"),
+                      foregroundImage: const AssetImage("assets/image1.png"),
                       backgroundColor: Colors.red,
                       radius: 30,
                     ),
-                    SizedBox(width: 15),
+                    const SizedBox(width: 15),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Dr. Pat Gulipat",
-                          style: TextStyle(
+                          title,
+                          style: const TextStyle(
                             fontSize: 22,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          "Dentist",
-                          style: TextStyle(
+                          subtitle,
+                          style: const TextStyle(
                             color: Colors.white,
                           ),
                         ),
@@ -331,7 +330,7 @@ class ScheduleCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                Icon(Icons.more_vert, color: Colors.white)
+                const Icon(Icons.more_vert, color: Colors.white)
               ],
             ),
             Row(
@@ -340,22 +339,22 @@ class ScheduleCard extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(Icons.calendar_today, color: Colors.white),
-                    SizedBox(width: 10),
+                    const Icon(Icons.calendar_today, color: Colors.white),
+                    const SizedBox(width: 10),
                     Text(
-                      "Sunday, 27 June 2021",
-                      style: TextStyle(color: Colors.white),
+                      date,
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(Icons.access_time_filled, color: Colors.white),
-                    SizedBox(width: 10),
+                    const Icon(Icons.access_time_filled, color: Colors.white),
+                    const SizedBox(width: 10),
                     Text(
-                      "08:00am - 10:00am",
-                      style: TextStyle(color: Colors.white),
+                      time,
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
