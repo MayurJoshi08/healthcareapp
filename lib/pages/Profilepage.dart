@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-
-void main() => runApp(MyApp());
+void main() => runApp(BookingAppointmentApp());
 
 class BookingAppointmentApp extends StatelessWidget {
   @override
@@ -13,15 +11,18 @@ class BookingAppointmentApp extends StatelessWidget {
     );
   }
 }
+
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
+
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, // This removes the back arrow
         title: Text('Profile'),
       ),
       body: SingleChildScrollView(
@@ -31,6 +32,9 @@ class _ProfilePageState extends State<ProfilePage> {
             // Profile picture section
             Stack(
               children: [
+                CircleAvatar(
+                  radius: 50,
+                ),
                 Positioned(
                   bottom: 0,
                   right: 0,
@@ -91,26 +95,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              radius: 15,
-              backgroundImage: NetworkImage(
-                  'https://via.placeholder.com/150'), // Replace with actual image URL
-            ),
-            label: 'Profile',
-          ),
-        ],
       ),
     );
   }
